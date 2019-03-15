@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h2>我是Vue渲染的内容：{{key}}</h2>
+        <input type="button" value="弹窗" @click="fun()"/>
+        <input type="button" value="弹窗1" @click="fun1('hahaha')"/>
+        <input type="button" value="修改内容（非ES6）" @click="modify('我是新字符串')"/>
+        <input type="button" value="修改内容（ES6）" @click="modifyES6('ES6我是新字符串')"/>
+        <input type="button" value="通过v-on方式绑定事件" v-on:click="fun"/>
+    </div>
+
+    <script>
+
+        var m = {
+            word: "hello vue",
+            key: "我是Key",
+        }
+
+        var vue = new Vue({
+            el: "#app",
+            data: m,
+            methods: {
+                fun(){
+                    alert(this.word)
+                },
+                fun1(x){
+                    alert(this.key+x)
+                },
+                modify: function(newchar){
+                    this.key = newchar
+                },
+                modifyES6(newchar) {
+                    this.key = newchar
+                }
+            }
+        })
+
+        // vue.key = "我是外部修改的key,是vue对象的"
+        // m.key = "我是外部修改的key，是data对象m的"
+        // this.key = "我是外部修改的key，是this修改的"  这样修改不到
+
+    </script>
+</body>
+</html>

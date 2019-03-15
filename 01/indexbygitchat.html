@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <h1>测试条件渲染</h1>
+    <div id="app">
+        <h2>v-if、v-else-if、v-else、v-show</h2>
+        <div v-if="flag == 1">
+            Flag是：{{flag}}
+        </div>
+        <div v-else-if="flag == 2">
+            Flag是：{{flag}}
+        </div>
+        <div v-else>
+            Flag既不是1也不是2，而是：{{flag}}
+        </div>
+
+        <div v-show="flag1 == 1">
+            {{msg}}
+        </div>
+    </div>
+    <hr>
+
+    <div id="applist">
+        <h2>通过v-for遍历数组</h2>
+        <div v-for="(item, index) in items" :key="index">
+            <div v-show="item.price < 50"> 
+                    <div>{{item.name}}</div>
+                    <div>{{item.price}}</div>
+                    <div>{{item.desc}}</div>
+            </div>
+            
+        </div>
+    </div>
+    <hr>
+    <div id="appobject">
+        <h2>使用v-for遍历object属性</h2>
+        <div v-for="(value, key, index) in dataSource" v-bind:key=index">
+            {{value}}. {{key}}.{{index}}
+        </div>
+    </div>
+    
+
+
+    <script type="text/javascript">
+
+        var message = {
+            flag: 1,
+            flag1: 1,
+            msg: "我是v-show显示出来的数据。v-if的数据不合符条件的话，就不会存在于DOM树上</br>但是v-show的数据会渲染到DOM树上，通过display属性来控制是否可见。"
+        }
+
+        var vue = new Vue({
+            el: "#app",
+            data: message
+        })
+
+        var listdata = {
+            items: [
+                {
+                    name: "《Java从入门到精通》",
+                    price: 99.00,
+                    desc: "Java",
+                },
+                {
+                    name: "《SQL从入门到精通》",
+                    price: 79.00,
+                    desc: "SQL",
+                },
+                {
+                    name: "《Vue大法好》",
+                    price: 59.00,
+                    desc: "前段",
+                },
+                {
+                    name: "《轻量级SSH从入门到精通》",
+                    price: 39.00,
+                    desc: "Java",
+                },
+            ]
+        }
+
+        var vuelist = new Vue({
+            el: "#applist",
+            data: listdata,
+        })
+
+        var dataobject = {
+            dobj:{
+                id: 1,
+                name: zx,
+                password: 123,
+                desc: 学习者,
+            }
+        }
+
+        var vueobj = new Vue({
+            el: "#appobject",
+            data: dataobject,
+        })
+    </script>
+</body>
+</html>
